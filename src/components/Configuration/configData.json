@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "Header": true,
+    "Nav": true,
+    "About": true,
+    "Experience": true,
+    "Portfolio": true,
+    "Testimonials": true,
+    "Contact": true,
+    "Footer":true
+  }
+}

@@ -1,0 +1,68 @@
+nav {
+  background: rgba(0, 0, 0, 0.3);
+  width: max-content;
+  display: block;
+  padding: 0.7rem 1.7rem;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0rem;
+  display: flex;
+  gap: 0.8rem;
+  border-radius: 1rem 1rem 0 0;
+  backdrop-filter: blur(15px);
+  background-color: #000;
+  z-index: 2;
+  border: 2px solid var(--color-bg);
+}
+
+nav a {
+  background: transparent;
+  padding: 0.9rem;
+  border-radius: 1rem;
+  display: flex;
+  color: var(--color-light);
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* flex-direction: column; */
+  gap: 10px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+nav a:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+nav a.active {
+  background: var(--color-primary);
+  color: var(--color-bg);
+  scale: 1.09;
+}
+
+.nav-text{
+  font-size: 1rem;
+  display: none;
+}
+
+nav a.active .nav-text{
+  display: block;
+  font-size: 1rem;
+}
+
+nav a:hover .nav-text{
+  display: block;
+}
+
+@media screen and (max-width: 480px) {
+  nav {
+    zoom: 0.8;
+  }
+  .nav-text{
+    display: none !important;
+  }
+}
