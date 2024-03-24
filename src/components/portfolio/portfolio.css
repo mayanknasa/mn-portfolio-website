@@ -1,7 +1,9 @@
 .portfolio__container {
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
 }
 
 .portfolio__item {
@@ -52,12 +54,12 @@ width: 100px ;
 }
 /* MEDIA QUERIES FOR MEDIUM DEVICES(LIKE TABLETS) */
 
-/* @media screen and (max-width: 1024px) {
-  .portfolio__container {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
-  }
-} */
+@media screen and (max-width: 1024px) {
+.portfolio__container h2{
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+}
 
 /* MEDIA QUERIES FOR SMALLER DEVICES */
 

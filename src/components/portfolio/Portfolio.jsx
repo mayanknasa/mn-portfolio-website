@@ -66,11 +66,11 @@ const data = [
 ];
 const Portfolio = () => {
   return (
-    <section id="portfolio">
+    <section id="portfolio" className="portfolio__container">
       <h5>My Recent Works</h5>
       <h2>I've worked on many projects from scratch, are:</h2>
 
-      <div className="container portfolio__container">
+      <div className="container">
       <Carousel
   additionalTransfrom={0}
   arrows

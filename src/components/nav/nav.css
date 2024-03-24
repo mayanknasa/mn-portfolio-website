@@ -1,68 +1,73 @@
 nav {
-  background: rgba(0, 0, 0, 0.3);
-  width: max-content;
-  display: block;
-  padding: 0.7rem 1.7rem;
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0rem;
-  display: flex;
-  gap: 0.8rem;
-  border-radius: 1rem 1rem 0 0;
-  backdrop-filter: blur(15px);
-  background-color: #000;
-  z-index: 2;
-  border: 2px solid var(--color-bg);
-}
-
-nav a {
-  background: transparent;
-  padding: 0.9rem;
-  border-radius: 1rem;
-  display: flex;
-  color: var(--color-light);
-  font-size: 1.3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* flex-direction: column; */
-  gap: 10px;
-  -webkit-transition: all 1s ease;
-  -moz-transition: all 1s ease;
-  -ms-transition: all 1s ease;
-  transition: all 1s ease;
+  padding: 0.6rem 0 0 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(15px);
+  z-index: 1000;
 }
 
-nav a:hover {
-  background: rgba(0, 0, 0, 0.3);
+nav a {
+  color: #ffffff;
+  font-size: 1.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  transition: color 0.3s, background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  position: relative;
+  margin: 0 0.2rem;
+
 }
 
-nav a.active {
-  background: var(--color-primary);
-  color: var(--color-bg);
-  scale: 1.09;
+.nav-text {
+  /* display: none; */
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
-.nav-text{
-  font-size: 1rem;
-  display: none;
+nav a:hover, nav a.active {
+  background: transparent;
+  color: #ffffff;
 }
 
-nav a.active .nav-text{
+nav a:hover .nav-text, nav a.active .nav-text {
   display: block;
-  font-size: 1rem;
 }
 
-nav a:hover .nav-text{
+nav a:hover, nav a.active {
+  background-color: rgba(255, 255, 255, 0.2); /* Subtle background on hover */
+  color: #ffffff;
+}
+
+nav a:hover .nav-text, nav a.active .nav-text {
   display: block;
+}
+
+/* Adding white line under the active link */
+nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #ffffff; /* White line for active state */
+  transition: all 0.3s ease;
 }
 
 @media screen and (max-width: 480px) {
-  nav {
-    zoom: 0.8;
+  nav a {
+    font-size: 1.5rem;
   }
-  .nav-text{
+  .nav-text {
     display: none !important;
   }
 }

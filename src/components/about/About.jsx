@@ -1,4 +1,3 @@
-
 import "./about.css";
 import ME from "../../assets/me-about.png";
 import { FaAward } from "react-icons/fa";
@@ -47,27 +46,19 @@ const About = () => {
             </h3>
             <ul className="highlighted-points">
               <li>
-                Created and maintained front-end code for <strong>20+ e-commerce
-                websites</strong> including re-designs, seasonal updates and production
-                work.
+              Led the development of <strong>100+ new features</strong>, including responsive navigation menus, various webpages, e-mail templates, etc. across multiple <strong>Magento</strong> and <strong>React driven e-commerce websites</strong>.
               </li>
               <li>
-                Led troubleshooting, fixed <strong>1,000+ bugs</strong> and other issues, and
-                updated sites throughout production lifecycle which resulted in
-                improved user experience.
+              <strong>Diagnosed</strong> and <strong>resolved 100+ existing bugs</strong> across various e-commerce websites, ensuring robust and <strong>error-free functionality</strong>.
               </li>
               <li>
-                Developed the website navigation menus, various webpages, e-mail
-                templates, and various other features multiple e-commerce
-                websites.
+              Conducted <strong>re-designs, updates</strong>, and comprehensive <strong>website maintenance tasks</strong>, improving website performance by <strong>+93%</strong>.
               </li>
               <li>
-              Assisted in the deployment of <strong>50+</strong> online marketing initiatives,
-                including banner advertisements.
+              Introduced various <strong>automation tools</strong> and <strong>modules</strong>, like WeltPixel, etc. yielding a notable <strong>$3200 daily savings and enhanced efficiency</strong>.
               </li>
               <li>
-                Collaborated with designers, developers, and project managers to
-                ensure seamless implementation of web development projects.
+              Led the <strong>deployment of 70+ online marketing initiatives</strong>, including impactful banner advertisements, contributing to the attainment of <strong>record-breaking</strong> online orders on platforms.
               </li>
             </ul>
           </div>

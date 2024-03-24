@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import "./contact.css";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsLinkedin, BsCheck2Circle } from "react-icons/bs";
@@ -71,7 +71,7 @@ const Contact = () => {
         </div>
         {/* END OF CONTACT OPTIONS */}
         <form ref={form} onSubmit={sendEmail}>
-        <h2>Feel free to reach me by filling the form below &#128229;</h2>
+        <h2>Please feel free to reach me by filling the form below &#128229;</h2>
           <input
             type="text"
             name="user_name"
