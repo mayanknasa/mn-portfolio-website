@@ -59,7 +59,6 @@ textarea {
   border: 2px solid #b5b3b3;
   resize: none;
   color: var(--color-white);
-  font-family: "Quicksand", sans-serif;
   font-size: 14px;
 }
 
@@ -70,7 +69,6 @@ textarea:hover{
 
 input::placeholder,
 textarea::placeholder{
-  font-family: "Quicksand", sans-serif;
   color:#b5b3b3;
   font-size: 14px;
 }

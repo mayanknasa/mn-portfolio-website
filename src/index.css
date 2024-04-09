@@ -8,6 +8,7 @@
   list-style: none;
   box-sizing: border-box;
   text-decoration: none;
+  font-family: "Lato", sans-serif;
 }
 
 /* CSS VARIABLES DECLARARTIONS */
@@ -29,8 +30,8 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: "Lato", sans-serif;
 }
+
 /* DISABLING SCROLL BAR */
 ::-webkit::-webkit-scrollbar {
   display: none;
@@ -104,7 +105,6 @@ a:hover {
   border: 1px solid var(--color-primary);
   transition: var(--transition);
   font-weight: 500;
-  font-family: "Quicksand", sans-serif;
 }
 
 .btn:hover {

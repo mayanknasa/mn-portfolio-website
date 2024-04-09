@@ -23,7 +23,7 @@ header {
   font-size: 1rem;
 }
 .header__container h6{
-  font-weight: 100;
+  font-weight: 300;
   font-size: 1.2rem;
   margin: 0.5rem 0;
 }
@@ -144,7 +144,7 @@ header {
 }
 #mouse-scroll .down-arrow-1, #mouse-scroll .down-arrow-2, #mouse-scroll .down-arrow-3 {
   -webkit-animation: mouse-scroll 1s infinite; 
-    -moz-animation: mouse-scroll 1s infinite:
+    -moz-animation: mouse-scroll 1s infinite;
 }
 #mouse-croll .down-arrow-1 {
    -webkit-animation-delay: .1s; 
