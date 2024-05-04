@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "image": "/src/assets/6thstreet.png",
+    "title": "6THSTREET",
+    "demo": "https://www.6thstreet.com"
+  },
+  {
+    "id": 2,
+    "image": "/src/assets/6thstreetmobileapp.png",
+    "title": "6THSTREET MOBILE APP",
+    "demo": "https://apps.apple.com/us/app/6thstreet-com/id1370217070"
+  },
+  {
+    "id": 3,
+    "image": "/src/assets/Crocs.png",
+    "title": "CROCS MIDDLE EAST",
+    "demo": "https://en-ae.crocsgulf.com"
+  },
+  {
+    "id": 4,
+    "image": "/src/assets/Dunelondon.png",
+    "title": "DUNELONDON MIDDLE EAST",
+    "demo": "https://en.dunelondon.ae"
+  },
+  {
+    "id": 5,
+    "image": "/src/assets/Rituals.png",
+    "title": "RITUALS MIDDLE EAST",
+    "demo": "https://en-ae.rituals.com"
+  },
+  {
+    "id": 6,
+    "image": "/src/assets/Brainbooster.png",
+    "title": "BRAIN BOOSTER QUIZ",
+    "demo": "https://brainbooster.netlify.app"
+  },
+  {
+    "id": 7,
+    "image": "/src/assets/Dollardoge.png",
+    "title": "DOLLAR DOGE",
+    "demo": "https://dollardoge.netlify.app"
+  },
+  {
+    "id": 8,
+    "image": "/src/assets/Basesheba.png",
+    "title": "BASE SHEBA",
+    "demo": "https://www.basesheba.com"
+  },
+  {
+    "id": 9,
+    "image": "/src/assets/Weddinghouse.png",
+    "title": "WEDDING HOUSE DESIGN",
+    "demo": "https://weddinghouse.netlify.app"
+  },
+  {
+    "id": 10,
+    "image": "/src/assets/Copyme.png",
+    "title": "COPY ME",
+    "demo": "https://copy-me.netlify.app"
+  },
+  {
+    "id": 11,
+    "image": "/src/assets/Levelup.png",
+    "title": "LEVELUP GAMING",
+    "demo": "https://levelup-sonipat.netlify.app"
+  }
+]

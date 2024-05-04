@@ -9,7 +9,7 @@ import Footer from "./components/footer/Footer";
 import { useCallback } from 'react';
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
-import configData from './components/Configuration/configData.json'
+import sectionController from './components/JSON/sectionController.json'
 import particlesOptions from "./components/ParticlesBackground/particles.json";
 function App() {
   const particlesInit = useCallback(main => {
@@ -19,14 +19,14 @@ function App() {
   return (
     <div>
        <Particles options={particlesOptions} init={particlesInit}/>
-      {configData.sections.Header && <Header />}
-      {configData.sections.Nav && <Nav />}
-      {configData.sections.About && <About />}
-      {configData.sections.Experience && <Experience />}
-      {configData.sections.Portfolio && <Portfolio />}
-      {configData.sections.Testimonials && <Testimonials />}
-      {configData.sections.Contact && <Contact />}
-      {configData.sections.Footer && <Footer />}
+      {sectionController.sections.Header && <Header />}
+      {sectionController.sections.Nav && <Nav />}
+      {sectionController.sections.About && <About />}
+      {sectionController.sections.Experience && <Experience />}
+      {sectionController.sections.Portfolio && <Portfolio />}
+      {sectionController.sections.Testimonials && <Testimonials />}
+      {sectionController.sections.Contact && <Contact />}
+      {sectionController.sections.Footer && <Footer />}
     </div>
   );
 }
