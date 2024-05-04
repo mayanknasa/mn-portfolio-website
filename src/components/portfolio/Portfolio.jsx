@@ -1,8 +1,7 @@
 import "./portfolio.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
-import ProjectData from '../JSON/ProjectData.json';
+import ProjectData from './ProjectData';
 
 const Portfolio = () => {
   return (
