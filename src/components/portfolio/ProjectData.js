@@ -9,6 +9,8 @@ import IMG8 from "../../assets/Basesheba.png"
 import IMG9 from "../../assets/Weddinghouse.png"
 import IMG10 from "../../assets/Copyme.png"
 import IMG11 from "../../assets/Levelup.png"
+import IMG12 from "../../assets/Catincap.png"
+
 const data= [
   {
     "id": 1,
@@ -75,14 +77,13 @@ const data= [
     "image": IMG11,
     "title": "LEVELUP GAMING",
     "demo": "https://levelup-sonipat.netlify.app"
+  },
+  {
+    "id": 12,
+    "image": IMG12,
+    "title": "$LILCAT",
+    "demo": "https://lilcat.xyz/"
   }
 ]
-
-
-// function ProjectData() {
-//   return (
-//     {<div>ProjectData</div>}
-//   )
-// }
 
 export default data
