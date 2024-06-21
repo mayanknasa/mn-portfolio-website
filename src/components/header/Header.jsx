@@ -5,9 +5,9 @@ const Header = () => {
   return (
     <header>
       <div className="container header__container" id="">
-        <h5>Hey I&#39;m</h5>
+        <h5>Hey&#128075; I&#39;m</h5>
         <h1>Mayank Nasa</h1>
-        <h5 className="text-light">Software Engineer</h5>
+        <h5 className="text-light">Software Engineer &#128187;</h5>
         <h6>
           <quote>
           &#34; Transforming complex problems into elegant solutions through the

@@ -17,15 +17,17 @@ header {
 }
 .header__container h1{
   text-transform: uppercase;
-  font-size: 2.5rem;
+  font-size: 2.7rem;
 }
 .header__container h5{
-  font-size: 1rem;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
 }
 .header__container h6{
   font-weight: 300;
   font-size: 1.2rem;
   margin: 0.5rem 0;
+  letter-spacing: 1px;
 }
 
 /* CTA */
@@ -35,6 +37,7 @@ header {
   display: flex;
   gap: 1.2rem;
   justify-content: center;
+  font-size: 1.4rem;
 }
 
 /* HEADER SOCIALS */

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import "./contact.css";
 import { MdOutlineEmail } from "react-icons/md";
 import { BsLinkedin, BsCheck2Circle } from "react-icons/bs";
-import { FiTwitter } from "react-icons/fi";
+import { FaSquareXTwitter } from "react-icons/fa6";
 import emailjs from '@emailjs/browser';
 import { IoClose } from "react-icons/io5";
 import { TbFaceIdError} from "react-icons/tb";
@@ -44,11 +44,11 @@ const Contact = () => {
           </article>
 
           <article className="contact__option">
-            <FiTwitter className="contact__option-icon" />
-            <h4>Twitter</h4>
+            <FaSquareXTwitter className="contact__option-icon" />
+            <h4>X</h4>
             <h5>@mayanknasa4</h5>
             <a
-              href="https://twitter.com/messages/compose?recipient_id=1551439168206622720"
+              href="https://x.com/messages/compose?recipient_id=1551439168206622720"
               className="twitter-dm-button"
               data-screen-name="@mayanknasa4"
               target="__blank"
