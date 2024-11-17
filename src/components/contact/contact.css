@@ -45,8 +45,8 @@ form {
 }
 
 form h2{
-  color: var(--color-light);
-  font-size: 0.8rem;
+  color: var(--color-white);
+  font-size: 1rem;
 }
 
 input,
@@ -68,7 +68,7 @@ textarea:hover{
 
 input::placeholder,
 textarea::placeholder{
-  color:#b5b3b3;
+  color: var(--color-light);
   font-size: 14px;
 }
 

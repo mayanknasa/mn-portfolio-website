@@ -182,7 +182,7 @@ img {
 }
 
 .star {
-  animation: twinkle 1s infinite alternate;
+  animation: twinkle 2s infinite alternate;
   opacity: 0;
 }
 
@@ -193,9 +193,13 @@ img {
 
 @keyframes twinkle {
   0% {
-    opacity: 0;
+    opacity: 0.4;
   }
   100% {
     opacity: 1;
   }
+}
+
+.cta{
+  border: 1px solid var(--color-white);
 }

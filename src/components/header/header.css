@@ -125,8 +125,8 @@ header {
     -webkit-transform: rotate(45deg);
        transform: rotate(45deg);
        transform: rotate(45deg);
-  border-right: 2px solid var(--color-primary); 
-  border-bottom: 2px solid var(--color-primary);
+  border-right: 2px solid var(--color-white); 
+  border-bottom: 2px solid var(--color-white);
   margin: 0 0 3px 5px;
 }
 #mouse-scroll .mouse {
@@ -136,7 +136,7 @@ header {
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
-  border: 2px solid var(--color-primary);
+  border: 2px solid var(--color-white);
   top: 170px;
 }
 .arrows-div{
