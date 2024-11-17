@@ -40,7 +40,7 @@ html {
 
 body {
   font-family: "Lato", sans-serif;
-  background:#000;
+  background: linear-gradient(180deg, #1a1a4b, #17173f);
   color: var(--color-white);
   line-height: 1.7;
   /* background-image: url(../src/assets/bg.jpg); */
@@ -178,5 +178,24 @@ img {
 @media screen and (max-width: 600px) {
   .container {
     width: var(--container-width-sm);
+  }
+}
+
+.star {
+  animation: twinkle 1s infinite alternate;
+  opacity: 0;
+}
+
+.star:hover {
+  animation: none;
+  opacity: 1;
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

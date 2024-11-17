@@ -1,6 +1,7 @@
 import "./header.css";
 import CTA from "./CTA";
 import HeaderSocials from "./HeaderSocials";
+import TypingEffect from './TypingEffect';
 const Header = () => {
   return (
     <header>
@@ -8,11 +9,10 @@ const Header = () => {
         <h5>Hey&#128075; I&#39;m</h5>
         <h1>Mayank Nasa</h1>
         <h5 className="text-light">Software Engineer &#128187;</h5>
-        <h6>
-          <quote>
-          &#34; Transforming complex problems into elegant solutions through the
-          power of code &#34;</quote>
-        </h6>
+        <TypingEffect
+          text={`Transforming complex problems into elegant solutions through the power of code`}
+          typingSpeed={50}  // Adjust typing speed here (in ms)x
+        />
         <HeaderSocials />
         <CTA />
         <a href="#contact" className="scroll__down">

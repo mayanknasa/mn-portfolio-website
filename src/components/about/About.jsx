@@ -22,49 +22,69 @@ const About = () => {
           <div className="about__cards">
             <article className="about__card">
               <FaAward className="about__icon" />
-              <h5>Highly Appreciated for developments</h5>
-              <small></small>
-              {/* <small>6 Months of Working</small> */}
+              <h5>Award-Winning Development</h5>
+              <small>
+                Recognized for delivering high-performance, scalable solutions
+              </small>
             </article>
 
             <article className="about__card">
               <FiUsers className="about__icon" />
-              <h5>Goal-Oriented Team Leader</h5>
-              {/* <h5>Clients</h5>
-              <small>200+ Worldwide</small> */}
+              <h5>Collaborative Team Player</h5>
+              <small>
+                Proven experience working with agile teams to deliver impactful
+                results
+              </small>
             </article>
 
             <article className="about__card">
               <VscFolderLibrary className="about__icon" />
-              <h5>Working for Various Popular Brands</h5>
-              {/* <small>80+ Completed</small> */}
+              <h5>Building for Leading Brands</h5>
+              <small>
+                Worked on top-rated e-commerce platforms and mobile apps
+              </small>
             </article>
           </div>
+
           <div className="milestones">
             <h3>
               <strong>Milestones Achieved:</strong>
             </h3>
             <ul className="highlighted-points">
               <li>
-              Led the development of <strong>100+ new features</strong>, including responsive navigation menus, various webpages, e-mail templates, etc. across multiple <strong>Magento</strong> and <strong>React driven e-commerce websites</strong>.
+                Successfully developed and launched{" "}
+                <strong>50+ new features</strong> for e-commerce platforms,
+                including responsive web pages, mobile app screens, and design
+                revamps, enhancing overall user experience.
               </li>
               <li>
-              <strong>Diagnosed</strong> and <strong>resolved 100+ existing bugs</strong> across various e-commerce websites, ensuring robust and <strong>error-free functionality</strong>.
+                Integrated <strong>multiple APIs</strong> and managed state
+                using <strong>Redux</strong>, optimizing performance and
+                scalability for <strong>6thstreet.com</strong>, contributing to
+                over 1 million downloads on Google Play.
               </li>
               <li>
-              Conducted <strong>re-designs, updates</strong>, and comprehensive <strong>website maintenance tasks</strong>, improving website performance by <strong>+93%</strong>.
+                Resolved <strong>120+ critical bugs</strong> across websites and
+                mobile apps, ensuring smooth, error-free functionality and a{" "}
+                <strong>94% Google PageSpeed Insights score</strong> for the
+                6thstreet website.
               </li>
               <li>
-              Introduced various <strong>automation tools</strong> and <strong>modules</strong>, like WeltPixel, etc. yielding a notable <strong>$3200 daily savings and enhanced efficiency</strong>.
+                Led the implementation of <strong>automation tools</strong> like
+                WeltPixel, saving the company <strong>$90K monthly</strong>{" "}
+                while significantly boosting operational efficiency.
               </li>
               <li>
-              Led the <strong>deployment of 70+ online marketing initiatives</strong>, including impactful banner advertisements, contributing to the attainment of <strong>record-breaking</strong> online orders on platforms.
+                Spearheaded <strong>70+ marketing initiatives</strong> and A/B
+                testing on mobile apps, improving user engagement by{" "}
+                <strong>34%</strong> and driving record sales on e-commerce
+                platforms.
               </li>
             </ul>
           </div>
 
-          <a href="#contact" className="btn btn-primary">
-            Let&apos;s Talk
+          <a href="#contact" className="btn btn-primary star">
+            Let&#39;s Talk
           </a>
         </div>
       </div>

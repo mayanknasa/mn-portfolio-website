@@ -1,9 +1,9 @@
 
 const CTA = () => {
   return (
-    <div className="cta">
+    <div className="cta star">
       <a href="#contact" className="btn">
-        Let's Connect :)
+        Let&#39;s Connect :)
       </a>
     </div>
   );

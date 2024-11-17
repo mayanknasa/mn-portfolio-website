@@ -14,8 +14,8 @@
   aspect-ratio: 1/1;
   border-radius: 2rem;
   background-color: transparent;
-  border-top: 10px solid var(--color-bg);
-  border-left: 10px solid var(--color-bg);
+  border-top: 10px solid hwb(0 64% 35%);
+  border-left: 10px solid hwb(0 64% 35%);
 }
 
 .about__me-image {

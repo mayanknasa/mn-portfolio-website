@@ -1,3 +1,6 @@
+import sectionController from "./components/JSON/sectionController.json";
+
+// Lazy-loaded component imports
 import Header from "./components/header/Header";
 import Nav from "./components/nav/Nav";
 import About from "./components/about/About";
@@ -6,27 +9,28 @@ import Portfolio from "./components/portfolio/Portfolio";
 import Testimonials from "./components/testimonials/Testimonials";
 import Contact from "./components/contact/Contact";
 import Footer from "./components/footer/Footer";
-import { useCallback } from 'react';
-import Particles from "react-particles";
-import { loadFull } from "tsparticles";
-import sectionController from './components/JSON/sectionController.json'
-import particlesOptions from "./components/ParticlesBackground/particles.json";
+import HealthCheck from "./HealthCheck";
+
 function App() {
-  const particlesInit = useCallback(main => {
-    loadFull(main);
-}, [])
+  const { sections } = sectionController; // Destructure to simplify code
+
+  const componentsMap = {
+    Header: <Header />,
+    Nav: <Nav />,
+    About: <About />,
+    Experience: <Experience />,
+    Portfolio: <Portfolio />,
+    Testimonials: <Testimonials />,
+    Contact: <Contact />,
+    Footer: <Footer />,
+  };
 
   return (
     <div>
-       <Particles options={particlesOptions} init={particlesInit}/>
-      {sectionController.sections.Header && <Header />}
-      {sectionController.sections.Nav && <Nav />}
-      {sectionController.sections.About && <About />}
-      {sectionController.sections.Experience && <Experience />}
-      {sectionController.sections.Portfolio && <Portfolio />}
-      {sectionController.sections.Testimonials && <Testimonials />}
-      {sectionController.sections.Contact && <Contact />}
-      {sectionController.sections.Footer && <Footer />}
+      <HealthCheck />
+      {Object.entries(sections).map(([key, isVisible]) =>
+        isVisible ? <div key={key}>{componentsMap[key]}</div> : null
+      )}
     </div>
   );
 }
