@@ -8,17 +8,15 @@ const HealthCheck = () => {
     try {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 5000); // Timeout after 5 seconds
-
+  
       const response = await fetch(primaryDomain, {
         method: "HEAD",
-        mode: "no-cors",
         signal: controller.signal,
       });
-
+  
       clearTimeout(timeoutId);
-
-      // Handle opaque responses (assume success if no error occurs)
-      if (!response || response.type === "opaque") {
+  
+      if (response.ok) {
         console.log("Primary domain is active.");
       } else {
         console.warn("Unexpected response. Redirecting to backup domain...");
@@ -32,10 +30,10 @@ const HealthCheck = () => {
       }
       redirectToBackup();
     }
-  };
+  };  
 
   const redirectToBackup = () => {
-    alert(
+    console.log(
       "It seems the primary domain is unavailable. You are being redirected to the backup domain."
     );
     window.location.href = backupDomain;
