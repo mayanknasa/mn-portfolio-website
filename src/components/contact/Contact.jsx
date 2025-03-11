@@ -1,32 +1,46 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "./contact.css";
 import { MdOutlineEmail } from "react-icons/md";
-import { BsLinkedin, BsCheck2Circle } from "react-icons/bs";
+import { BsLinkedin } from "react-icons/bs";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import emailjs from '@emailjs/browser';
-import { IoClose } from "react-icons/io5";
-import { TbFaceIdError} from "react-icons/tb";
+import { motion } from "framer-motion";
+import Modal from "./Modal";
 
 const Contact = () => {
   const form = useRef();
-  const closeResponseBox= ()=>{
-    document.querySelector('.response-box').classList.remove('active-div');
-  }
+  const [modalState, setModalState] = useState({
+    isOpen: false,
+    status: "",
+    message: ""
+  });
+  
   const sendEmail = (e) => {
     e.preventDefault();
-    document.querySelector('.response-box').classList.add('active-div')
+    
     emailjs.sendForm('mayanknasa-portfolio', 'template_z9sbzxb', form.current, 'gG1htBop0b7WGCJYs')
       .then((result) => {
-          console.log(result.text);
-          document.querySelector('.sending-message').classList.add('inactive-div');
-          document.querySelector('.form-submit-success').classList.add('active-div');
+        console.log(result.text);
+        setModalState({
+          isOpen: true,
+          status: "success",
+          message: "Your message has been sent successfully! I'll get back to you soon."
+        });
+        e.target.reset();
       }, (error) => {
-          console.log(error.text);
-          document.querySelector('.sending-message').classList.add('inactive-div');
-          document.querySelector('.form-submit-fail').classList.add('active-div');
+        console.log(error.text);
+        setModalState({
+          isOpen: true,
+          status: "error",
+          message: "Failed to send message. Please try again or reach out via email directly."
+        });
       });
-    e.target.reset();
   };
+
+  const closeModal = () => {
+    setModalState(prev => ({ ...prev, isOpen: false }));
+  };
+
   return (
     <section id="contact">
       <h5>Get In Touch</h5>
@@ -34,80 +48,89 @@ const Contact = () => {
 
       <div className="container contact__container">
         <div className="contact__options">
-          <article className="contact__option">
+          <motion.article 
+            className="contact__option"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <MdOutlineEmail className="contact__option-icon" />
             <h4>Email</h4>
             <h5>mayanknasa4@gmail.com</h5>
-            <a href="mailto:mayanknasa4@gmail.com" target="__blank">
+            <a href="mailto:mayanknasa4@gmail.com" target="_blank" rel="noopener noreferrer">
               Send a message
             </a>
-          </article>
+          </motion.article>
 
-          <article className="contact__option">
+          <motion.article 
+            className="contact__option"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
             <FaSquareXTwitter className="contact__option-icon" />
             <h4>X</h4>
             <h5>@mayanknasa4</h5>
-            <a
-              href="https://x.com/messages/compose?recipient_id=1551439168206622720"
-              className="twitter-dm-button"
-              data-screen-name="@mayanknasa4"
-              target="__blank"
-            >
+            <a href="https://x.com/messages/compose?recipient_id=1551439168206622720" target="_blank" rel="noopener noreferrer">
               Send a message
             </a>
-          </article>
+          </motion.article>
 
-          <article className="contact__option">
+          <motion.article 
+            className="contact__option"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <BsLinkedin className="contact__option-icon" />
-            <h4>Linkedin</h4>
+            <h4>LinkedIn</h4>
             <h5>mayanknasa</h5>
-            <a
-              href="https://www.linkedin.com/in/mayanknasa"
-              target="__blank"
-            >
+            <a href="https://www.linkedin.com/in/mayanknasa" target="_blank" rel="noopener noreferrer">
               Connect
             </a>
-          </article>
+          </motion.article>
         </div>
-        {/* END OF CONTACT OPTIONS */}
-        <form ref={form} onSubmit={sendEmail}>
-        <h2>Please feel free to reach me by filling the form below &#128229;</h2>
+
+        <motion.form 
+          ref={form} 
+          onSubmit={sendEmail}
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2>Send me a message 💬</h2>
           <input
             type="text"
             name="user_name"
             placeholder="Your Full Name"
             required
           />
-          <input type="email" name="user_email" placeholder="Your Email" required />
+          <input 
+            type="email" 
+            name="user_email" 
+            placeholder="Your Email" 
+            required 
+          />
           <textarea
-            type="text"
             name="message"
-            rows="9"
+            rows="7"
             placeholder="Your Message"
             required
           ></textarea>
-          <button type="submit" className="btn btn-primary" value="Send">
+          <button type="submit" className="btn btn-primary">
             Send Message
           </button>
-        </form>
-        </div>
-        <div className="response-box inactive-div">
-        <IoClose className="close-icon" onClick={closeResponseBox}/>
-        <div className="sending-message">
-        Sending Message...</div>
-        <div className="form-submit-success inactive-div">
-          <BsCheck2Circle className="response-icon"/>
-              Thankyou !<br/>
-              I will get back to you soon.
-          </div>
-          <div className="form-submit-fail inactive-div">
-            <TbFaceIdError className="response-icon"/>
-            Some Technical Error.<br/>
-            You can email me by clicking <a href="mailto:mayanknasa4@gmail.com" target="__blank">
-              here.
-            </a>
-            </div></div>
+        </motion.form>
+      </div>
+
+      <Modal 
+        isOpen={modalState.isOpen}
+        onClose={closeModal}
+        status={modalState.status}
+        message={modalState.message}
+      />
     </section>
   );
 };
+
 export default Contact;

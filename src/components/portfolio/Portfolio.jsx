@@ -2,26 +2,67 @@ import "./portfolio.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ProjectData from './ProjectData';
+import { motion } from "framer-motion";
 
 const Portfolio = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
     <section id="portfolio" className="portfolio__container">
-      <h5>My Recent Works</h5>
-      <h2>I&apos;ve worked on many projects from scratch, are:</h2>
-      <div className="container">
+      <motion.h5
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+      >
+        My Recent Works
+      </motion.h5>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        I&apos;ve worked on many projects from scratch, are:
+      </motion.h2>
+      <motion.div
+        className="container"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <Carousel
           additionalTransfrom={0}
           arrows
           autoPlay
-          autoPlaySpeed={1500}
+          autoPlaySpeed={3000}
           centerMode={false}
-          className=""
-          containerClass="container-with-dots"
-          dotListClass=""
+          className="portfolio-carousel"
+          containerClass="container-without-dots"
           draggable
           focusOnSelect={false}
           infinite
-          itemClass=""
+          itemClass="carousel-item-padding-40-px"
           keyBoardControl
           minimumTouchDrag={80}
           pauseOnHover
@@ -32,16 +73,19 @@ const Portfolio = () => {
             desktop: {
               breakpoint: { max: 3000, min: 1024 },
               items: 3,
+              slidesToSlide: 1,
               partialVisibilityGutter: 40
-            },
-            mobile: {
-              breakpoint: { max: 464, min: 0 },
-              items: 1,
-              partialVisibilityGutter: 30
             },
             tablet: {
               breakpoint: { max: 1024, min: 464 },
               items: 2,
+              slidesToSlide: 1,
+              partialVisibilityGutter: 30
+            },
+            mobile: {
+              breakpoint: { max: 464, min: 0 },
+              items: 1,
+              slidesToSlide: 1,
               partialVisibilityGutter: 30
             }
           }}
@@ -55,24 +99,30 @@ const Portfolio = () => {
           swipeable
         >
           {ProjectData.map(({ id, image, title, demo }) => (
-            <article key={id} className="portfolio__item">
+            <motion.article
+              key={id}
+              className="portfolio__item"
+              variants={itemVariants}
+            >
               <div className="portfolio__item-image">
-                <a href={demo}>
-                  <img src={image} alt={title} />
-                </a>
+                <img src={image} alt={title} loading="lazy" />
               </div>
-              <a href={demo} target="__blank">
-                <h3 className="portfolio__item-title">{title}</h3>
-              </a>
+              <h3 className="portfolio__item-title">{title}</h3>
               <div className="portfolio__item-cta">
-                <a href={demo} className="btn btn-primary" target="__blank">
-                  Go to website
+                <a
+                  href={demo}
+                  className="btn btn-primary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Project
+                  <span className="btn-icon">→</span>
                 </a>
               </div>
-            </article>
+            </motion.article>
           ))}
         </Carousel>
-      </div>
+      </motion.div>
     </section>
   );
 };

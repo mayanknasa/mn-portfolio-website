@@ -1,71 +1,247 @@
 .portfolio__container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
-}
-
-.portfolio__item {
-  background: var(--color-bg-variant);
-  padding: 1.3rem;
-  border-radius: 2rem;
-  border: 1px solid transparent;
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  text-align: center;
-}
-
-.portfolio__item:hover {
-  border-color: var(--color-primary-variant);
-  background: transparent;
-}
-
-.portfolio__item-image {
-  border-radius: 1rem;
+  padding: var(--spacing-xl) 0;
+  background: linear-gradient(135deg, var(--color-bg), var(--color-bg-variant));
+  position: relative;
   overflow: hidden;
 }
 
+.portfolio__container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.1), transparent 50%);
+  animation: pulse 8s ease-in-out infinite;
+  z-index: 0;
+}
+
+.portfolio__container h5 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-sm);
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio__container h2 {
+  color: var(--color-white);
+  margin-bottom: 0;
+  font-size: 2.5rem;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-carousel {
+  position: relative;
+  z-index: 1;
+  padding: 0 var(--spacing-md);
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+.portfolio__item {
+  background: rgba(30, 41, 59, 0.7);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid transparent;
+  transition: var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  margin: var(--spacing-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio__item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.portfolio__item:hover::before {
+  transform: scaleX(1);
+}
+
+.portfolio__item:hover {
+  border-color: var(--color-primary);
+  background: rgba(30, 41, 59, 0.9);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-glow);
+}
+
 .portfolio__item-image {
-width: 100px ;
- height: 100px;
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.portfolio__item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-normal);
+}
+
+.portfolio__item:hover .portfolio__item-image img {
+  transform: scale(1.05);
+}
+
+.portfolio__item-title {
+  color: var(--color-white);
+  font-size: 1.2rem;
+  margin: var(--spacing-sm) 0;
+  font-weight: 600;
 }
 
 .portfolio__item-cta {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: var(--spacing-sm);
+  margin-top: auto;
   justify-content: center;
 }
 
-.portfolio__item-title{
+.portfolio__item-cta .btn {
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+  border: none;
+  color: var(--color-bg);
+  font-weight: 500;
   display: flex;
-  justify-content: center;
-  margin: 0.8rem 0 0.8rem;
-  text-transform: uppercase;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.portfolio__item-cta .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* Carousel Customization */
+.react-multi-carousel-list {
+  padding: var(--spacing-md) 0;
 }
 
 .react-multi-carousel-track {
-  align-items: center;
+  align-items: stretch;
+  padding: var(--spacing-sm) 0;
 }
-/* MEDIA QUERIES FOR MEDIUM DEVICES(LIKE TABLETS) */
 
+.react-multi-carousel-item {
+  display: flex;
+  align-items: stretch;
+}
+
+/* Custom Arrow Styles */
+.react-multiple-carousel__arrow {
+  background: rgba(30, 41, 59, 0.7) !important;
+  border-radius: var(--border-radius-full) !important;
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  opacity: 0.8 !important;
+  transition: var(--transition-fast) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.react-multiple-carousel__arrow:hover {
+  background: var(--color-primary) !important;
+  opacity: 1 !important;
+  box-shadow: var(--shadow-glow);
+}
+
+.react-multiple-carousel__arrow--left {
+  left: 0 !important;
+}
+
+.react-multiple-carousel__arrow--right {
+  right: 0 !important;
+}
+
+/* Responsive Design */
 @media screen and (max-width: 1024px) {
-.portfolio__container h2{
-  margin-right: 1rem;
-  margin-left: 1rem;
-}
-}
-
-/* MEDIA QUERIES FOR SMALLER DEVICES */
-
-/* @media screen and (max-width: 600px) {
-  .portfolio__container {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .portfolio__container h2 {
+    font-size: 2rem;
+    padding: 0 var(--spacing-md);
   }
-} */
+
+  .portfolio__item {
+    padding: var(--spacing-sm);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio__container h2 {
+    font-size: 1.8rem;
+  }
+
+  .portfolio__item-title {
+    font-size: 1.1rem;
+  }
+
+  .portfolio__item-cta .btn {
+    padding: 0.4rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .react-multiple-carousel__arrow {
+    width: 35px !important;
+    height: 35px !important;
+    min-width: 35px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .portfolio__container {
+    padding: var(--spacing-lg) 0;
+  }
+
+  .portfolio__container h2 {
+    font-size: 1.5rem;
+  }
+
+  .portfolio__item {
+    margin: var(--spacing-xs);
+  }
+
+  .portfolio__item-image {
+    aspect-ratio: 4/3;
+  }
+
+  .portfolio__item-title {
+    font-size: 1rem;
+  }
+
+  .portfolio__item-cta .btn {
+    padding: 0.3rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  .react-multiple-carousel__arrow {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+  }
+}

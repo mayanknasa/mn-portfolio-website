@@ -1,26 +1,30 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
-const TypingEffect = ({ text, typingSpeed = 100, cursorSpeed = 500 }) => {
+const TypingEffect = ({ text, typingSpeed = 50, cursorSpeed = 500 }) => {
   const [typedText, setTypedText] = useState("");
   const [isCursorVisible, setCursorVisible] = useState(true);
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
 
   useEffect(() => {
     let index = 0;
+    setTypedText("");
+    setIsTypingComplete(false);
 
     const typingInterval = setInterval(() => {
-      if (index < text.length-1) {
+      if (index < text.length) {
         setTypedText((prev) => prev + text[index]);
         index++;
       } else {
-        clearInterval(typingInterval); // Stop typing when all text is typed
+        clearInterval(typingInterval);
+        setIsTypingComplete(true);
       }
-    }, typingSpeed); // Speed of typing (in ms)
+    }, typingSpeed);
 
-    // Cursor blinking effect
     const cursorInterval = setInterval(() => {
       setCursorVisible((prev) => !prev);
-    }, cursorSpeed); // Speed of cursor blink (in ms)
+    }, cursorSpeed);
 
     return () => {
       clearInterval(typingInterval);
@@ -29,10 +33,23 @@ const TypingEffect = ({ text, typingSpeed = 100, cursorSpeed = 500 }) => {
   }, [text, typingSpeed, cursorSpeed]);
 
   return (
-    <h6>
-      &#34;{typedText}&#34;
-      <span style={{ visibility: isCursorVisible ? "visible" : "hidden" }}>|</span>
-    </h6>
+    <motion.div
+      className="typing-text"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <span className="quote">&#34;</span>
+      <span className="text">{typedText}</span>
+      <motion.span
+        className="cursor"
+        animate={{ opacity: isCursorVisible ? 1 : 0 }}
+        transition={{ duration: 0.2 }}
+      >
+        |
+      </motion.span>
+      <span className="quote">&#34;</span>
+    </motion.div>
   );
 };
 
