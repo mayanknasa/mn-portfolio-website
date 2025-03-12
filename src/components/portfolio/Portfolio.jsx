@@ -1,129 +1,132 @@
 import "./portfolio.css";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef, useEffect, useState, useMemo } from "react";
+import { useInView } from "react-intersection-observer";
 import ProjectData from './ProjectData';
-import { motion } from "framer-motion";
 
 const Portfolio = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5
-      }
-    }
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+
+  // Throttled mouse position update
+  const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
+  useEffect(() => {
+    let timeoutId;
+    const handleMouseMove = (e) => {
+      if (timeoutId) return;
+      timeoutId = setTimeout(() => {
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = containerRef.current?.getBoundingClientRect() || {};
+        const x = (clientX - (left || 0)) / (width || 1);
+        const y = (clientY - (top || 0)) / (height || 1);
+        setMousePosition({ x, y });
+        timeoutId = null;
+      }, 50); // Throttle to 50ms
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, []);
+
+  // Memoize the background gradient style
+  const gradientStyle = useMemo(() => ({
+    background: `radial-gradient(
+      circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%,
+      rgba(56, 189, 248, 0.15),
+      rgba(30, 41, 59, 0.7)
+    )`
+  }), [mousePosition.x, mousePosition.y]);
+
+  const ProjectItem = ({ project, index }) => {
+    const [ref, inView] = useInView({
+      threshold: 0.1,
+      triggerOnce: true
+    });
+
+    return (
+      <motion.article
+        ref={ref}
+        key={project.id}
+        className="portfolio__item"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={inView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ 
+          duration: 0.3,
+          delay: Math.min(index * 0.1, 0.3),
+          ease: "easeOut"
+        }}
+        style={gradientStyle}
+      >
+        <div className="portfolio__item-image">
+          <img 
+            src={project.image} 
+            alt={project.title} 
+            loading="lazy"
+            decoding="async"
+          />
+          <motion.div 
+            className="portfolio__item-overlay"
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 1 }}
+            transition={{ duration: 0.2 }}
+          >
+            <a
+              href={project.demo}
+              className="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Project →
+            </a>
+          </motion.div>
+        </div>
+        <h3 className="portfolio__item-title">
+          {project.title}
+        </h3>
+      </motion.article>
+    );
   };
 
   return (
-    <section id="portfolio" className="portfolio__container">
-      <motion.h5
+    <motion.section 
+      id="portfolio" 
+      className="portfolio__container"
+      ref={containerRef}
+      style={{ opacity }}
+    >
+      <motion.div 
+        className="portfolio__header"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-      >
-        My Recent Works
-      </motion.h5>
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        I&apos;ve worked on many projects from scratch, are:
-      </motion.h2>
-      <motion.div
-        className="container"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
         viewport={{ once: true }}
       >
-        <Carousel
-          additionalTransfrom={0}
-          arrows
-          autoPlay
-          autoPlaySpeed={3000}
-          centerMode={false}
-          className="portfolio-carousel"
-          containerClass="container-without-dots"
-          draggable
-          focusOnSelect={false}
-          infinite
-          itemClass="carousel-item-padding-40-px"
-          keyBoardControl
-          minimumTouchDrag={80}
-          pauseOnHover
-          renderArrowsWhenDisabled={false}
-          renderButtonGroupOutside={false}
-          renderDotsOutside={false}
-          responsive={{
-            desktop: {
-              breakpoint: { max: 3000, min: 1024 },
-              items: 3,
-              slidesToSlide: 1,
-              partialVisibilityGutter: 40
-            },
-            tablet: {
-              breakpoint: { max: 1024, min: 464 },
-              items: 2,
-              slidesToSlide: 1,
-              partialVisibilityGutter: 30
-            },
-            mobile: {
-              breakpoint: { max: 464, min: 0 },
-              items: 1,
-              slidesToSlide: 1,
-              partialVisibilityGutter: 30
-            }
-          }}
-          rewind={false}
-          rewindWithAnimation={false}
-          rtl={false}
-          shouldResetAutoplay
-          showDots={false}
-          sliderClass=""
-          slidesToSlide={1}
-          swipeable
-        >
-          {ProjectData.map(({ id, image, title, demo }) => (
-            <motion.article
-              key={id}
-              className="portfolio__item"
-              variants={itemVariants}
-            >
-              <div className="portfolio__item-image">
-                <img src={image} alt={title} loading="lazy" />
-              </div>
-              <h3 className="portfolio__item-title">{title}</h3>
-              <div className="portfolio__item-cta">
-                <a
-                  href={demo}
-                  className="btn btn-primary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Project
-                  <span className="btn-icon">→</span>
-                </a>
-              </div>
-            </motion.article>
-          ))}
-        </Carousel>
+        <h5>My Recent Works</h5>
+        <h2>Featured Projects</h2>
       </motion.div>
-    </section>
+
+      <motion.div 
+        className="portfolio__grid"
+        style={{ y }}
+      >
+        {ProjectData.map((project, index) => (
+          <ProjectItem 
+            key={project.id} 
+            project={project} 
+            index={index} 
+          />
+        ))}
+      </motion.div>
+    </motion.section>
   );
 };
 
