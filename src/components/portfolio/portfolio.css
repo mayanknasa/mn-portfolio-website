@@ -71,7 +71,13 @@
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(56, 189, 248, 0.1);
   box-shadow: var(--shadow-md);
-  will-change: transform, opacity;
+  background: rgba(30, 41, 59, 0.4);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.portfolio__item:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-primary);
 }
 
 .portfolio__item::before {
@@ -110,6 +116,10 @@
   transition: transform 0.5s ease;
 }
 
+.portfolio__item:hover .portfolio__item-image img {
+  transform: scale(1.05);
+}
+
 .portfolio__item-overlay {
   position: absolute;
   top: 0;
@@ -122,7 +132,12 @@
   justify-content: center;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  will-change: opacity;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio__item:hover .portfolio__item-overlay {
+  opacity: 1;
 }
 
 .portfolio__item-title {

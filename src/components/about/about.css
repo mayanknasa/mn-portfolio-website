@@ -6,116 +6,166 @@
 .about__container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 15%;
-  max-width: 1200px;
+  gap: 2rem;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: var(--spacing-lg);
+  padding: 2rem;
 }
 
 .about__content {
-  background: var(--color-bg-variant);
-  padding: var(--spacing-lg);
-  border-radius: var(--border-radius-lg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid transparent;
-  transition: var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
-.about__content:hover {
-  border-color: var(--color-primary);
-  background: transparent;
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-glow);
+.about__introduction {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-light);
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .about__cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-md);
-  margin: var(--spacing-md) 0;
+  gap: 1.5rem;
 }
 
 .about__card {
-  background: var(--color-bg);
+  background: var(--color-bg-variant);
   border: 1px solid transparent;
-  border-radius: var(--border-radius-md);
-  padding: var(--spacing-md);
+  border-radius: 1.5rem;
+  padding: 2rem;
   text-align: center;
-  transition: var(--transition-normal);
+  transition: var(--transition);
 }
 
 .about__card:hover {
-  border-color: var(--color-primary);
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-glow);
+  background: transparent;
+  border-color: var(--color-primary-variant);
+  cursor: default;
 }
 
 .about__icon {
   color: var(--color-primary);
-  font-size: 1.4rem;
-  margin-bottom: var(--spacing-sm);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
 }
 
 .about__card h5 {
-  font-size: 0.95rem;
-  color: var(--color-white);
-  margin-bottom: var(--spacing-xs);
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
 }
 
 .about__card small {
-  font-size: 0.7rem;
+  font-size: 0.9rem;
+  color: var(--color-light);
+  line-height: 1.5;
+}
+
+.about__highlights {
+  margin-top: 1rem;
+}
+
+.about__highlights h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--color-primary);
+}
+
+.highlights__content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.highlight__item {
+  background: var(--color-bg-variant);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  transition: var(--transition);
+}
+
+.highlight__item:hover {
+  background: transparent;
+  border: 1px solid var(--color-primary-variant);
+  transform: translateY(-5px);
+}
+
+.highlight__item h4 {
+  color: var(--color-primary);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.highlight__item p {
+  font-size: 0.9rem;
+  line-height: 1.6;
   color: var(--color-light);
 }
 
-.about__content p {
-  margin: var(--spacing-md) 0 var(--spacing-lg);
+.about__cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.about__cta p {
   color: var(--color-light);
-  line-height: 1.8;
+  margin-bottom: 1.5rem;
   font-size: 1.1rem;
 }
 
-.about__content a {
-  margin-top: var(--spacing-md);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
+.btn-icon {
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
 }
 
-/* MEDIA QUERIES (MEDIUM DEVICES) */
+.btn:hover .btn-icon {
+  transform: translateX(5px);
+}
+
+/* Media Queries (Medium Devices) */
 @media screen and (max-width: 1024px) {
-  .about__container {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .about__content {
-    padding: var(--spacing-md);
-  }
-}
-
-/* MEDIA QUERIES (SMALL DEVICES) */
-@media screen and (max-width: 768px) {
   .about__cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .highlights__content {
     grid-template-columns: 1fr 1fr;
   }
 
-  .about__content p {
-    margin: var(--spacing-sm) 0 var(--spacing-md);
-    font-size: 1rem;
+  .about__content {
+    text-align: center;
   }
 }
 
-@media screen and (max-width: 480px) {
+/* Media Queries (Small Devices) */
+@media screen and (max-width: 600px) {
   .about__cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .highlights__content {
     grid-template-columns: 1fr;
   }
 
   .about__content {
-    padding: var(--spacing-sm);
+    text-align: center;
+  }
+
+  .about__introduction {
+    font-size: 1rem;
   }
 
   .about__card {
-    padding: var(--spacing-sm);
+    padding: 1.5rem;
+  }
+
+  .highlight__item {
+    padding: 1.2rem;
   }
 }

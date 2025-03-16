@@ -80,9 +80,9 @@ const data= [
   },
   {
     "id": 12,
-    "image": IMG12,
-    "title": "$LILCAT",
-    "demo": "https://lilcat.xyz/"
+    "title": "Many More !",
+    "demo": "#",
+    "image": "https://images.unsplash.com/photo-1496449903678-68ddcb189a24?q=80&w=2070&auto=format&fit=crop"
   }
 ]
 

@@ -29,16 +29,16 @@ const Header = () => {
   }, []);
 
   const achievements = [
-    { number: "60+", text: "Features Developed" },
-    { number: "1M+", text: "App Downloads" },
+    { number: "65+", text: "Features Developed" },
     { number: "94%", text: "PageSpeed Score" },
-    { number: "35%", text: "Performance Boost" }
+    { number: "$90K", text: "Monthly Savings" },
+    { number: "3+", text: "Years of Experience" }
   ];
 
   const skills = [
     "React", "React Native", "JavaScript", "TypeScript",
-    "Node.js", "Express", "MongoDB", "PostgreSQL",
-    "AWS", "Docker", "CI/CD", "RESTful APIs"
+    "Redux", "Next.js", "Node.js", "REST APIs",
+    "GraphQL", "Performance", "Unit Testing", "SEO"
   ];
 
   const containerVariants = {
@@ -93,7 +93,7 @@ const Header = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           >
-            Hello I'm
+            Software Engineer
           </motion.h5>
           <motion.h1
             initial={{ scale: 0.8, opacity: 0 }}
@@ -112,7 +112,7 @@ const Header = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
           >
-            Crafting seamless digital experiences with modern web technologies
+            Software Engineer with 3+ years of expertise in React and React Native, specializing in building responsive, cross-platform web and mobile applications. Passionate about delivering scalable, user-centric solutions.
           </motion.h5>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -1,7 +1,5 @@
 import "./about.css";
-import { FaAward } from "react-icons/fa";
-import { FiUsers } from "react-icons/fi";
-import { VscFolderLibrary } from "react-icons/vsc";
+import { FaAward, FaCode, FaRocket } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const About = () => {
@@ -53,68 +51,62 @@ const About = () => {
         viewport={{ once: true }}
       >
         <motion.div className="about__content" variants={containerVariants}>
+          <motion.p className="about__introduction" variants={itemVariants}>
+            I'm a passionate Software Engineer with over 3 years of expertise in building exceptional digital experiences. 
+            Specializing in React and React Native development, I've had the privilege of working on high-impact projects 
+            that serve millions of users. My approach combines technical excellence with a deep understanding of user needs 
+            to create solutions that make a real difference.
+          </motion.p>
+
           <motion.div className="about__cards" variants={containerVariants}>
             <motion.article className="about__card" variants={itemVariants}>
+              <FaCode className="about__icon" />
+              <h5>Technical Excellence</h5>
+              <small>
+                65+ features developed with focus on performance and scalability
+              </small>
+            </motion.article>
+
+            <motion.article className="about__card" variants={itemVariants}>
+              <FaRocket className="about__icon" />
+              <h5>Impact Driven</h5>
+              <small>
+                Improved user engagement by 46% and saved $90K monthly in costs
+              </small>
+            </motion.article>
+
+            <motion.article className="about__card" variants={itemVariants}>
               <FaAward className="about__icon" />
-              <h5>Award-Winning Development</h5>
+              <h5>Quality Focused</h5>
               <small>
-                Recognized for delivering high-performance, scalable solutions
-              </small>
-            </motion.article>
-
-            <motion.article className="about__card" variants={itemVariants}>
-              <FiUsers className="about__icon" />
-              <h5>Collaborative Team Player</h5>
-              <small>
-                Proven experience working with agile teams to deliver impactful results
-              </small>
-            </motion.article>
-
-            <motion.article className="about__card" variants={itemVariants}>
-              <VscFolderLibrary className="about__icon" />
-              <h5>Building for Leading Brands</h5>
-              <small>
-                Worked on top-rated e-commerce platforms and mobile apps
+                Achieved 94% PageSpeed score and resolved 135+ critical issues
               </small>
             </motion.article>
           </motion.div>
 
-          <motion.div className="milestones" variants={itemVariants}>
-            <h3>Milestones Achieved</h3>
-            <ul className="highlighted-points">
-              <li>
-                Successfully developed and launched{" "}
-                <strong>50+ new features</strong> for e-commerce platforms,
-                including responsive web pages, mobile app screens, and design
-                revamps, enhancing overall user experience.
-              </li>
-              <li>
-                Integrated <strong>multiple APIs</strong> and managed state using{" "}
-                <strong>Redux</strong>, optimizing performance and scalability for{" "}
-                <strong>6thstreet.com</strong>, contributing to over 1 million
-                downloads on Google Play.
-              </li>
-              <li>
-                Resolved <strong>120+ critical bugs</strong> across websites and
-                mobile apps, ensuring smooth, error-free functionality and a{" "}
-                <strong>94% Google PageSpeed Insights score</strong> for the
-                6thstreet website.
-              </li>
-              <li>
-                Led the implementation of <strong>automation tools</strong> like
-                WeltPixel, saving the company <strong>$90K monthly</strong> while
-                significantly boosting operational efficiency.
-              </li>
-              <li>
-                Spearheaded <strong>70+ marketing initiatives</strong> and A/B
-                testing on mobile apps, improving user engagement by{" "}
-                <strong>34%</strong> and driving record sales on e-commerce
-                platforms.
-              </li>
-            </ul>
+          <motion.div className="about__highlights" variants={itemVariants}>
+            <h3>Key Achievements</h3>
+            <div className="highlights__content">
+              <div className="highlight__item">
+                <h4>Mobile App Success</h4>
+                <p>Led development of features driving 1M+ downloads and top 40 ranking in shopping apps</p>
+              </div>
+              <div className="highlight__item">
+                <h4>Performance Optimization</h4>
+                <p>Reduced API calls by 35% through innovative caching solutions and architectural improvements</p>
+              </div>
+              <div className="highlight__item">
+                <h4>Technical Leadership</h4>
+                <p>Spearheaded implementation of automation tools and marketing initiatives, driving significant ROI</p>
+              </div>
+            </div>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
+          <motion.div className="about__cta" variants={itemVariants}>
+            <p>
+              I'm always interested in hearing about new projects and opportunities. 
+              Let's discuss how we can work together to create something amazing.
+            </p>
             <a href="#contact" className="btn btn-primary">
               Let's Talk
               <span className="btn-icon">→</span>
