@@ -108,13 +108,14 @@ export default function Projects(){
   const live=LIVE_PROJECTS.filter(p=>filter==="All"||p.cat===filter);
 
   return(
-    <section id="projects" ref={ref} style={{padding:"clamp(64px,10vw,120px) 24px"}}>
+    <section id="projects" ref={ref} style={{ padding: "clamp(72px,8vw,100px) clamp(24px,6vw,80px)" }}>
       <div style={{maxWidth:"1100px",margin:"0 auto"}}>
 
         {/* Header */}
-        <motion.div initial={{opacity:0,y:20}} animate={vis?{opacity:1,y:0}:{}} transition={{duration:.5}} style={{textAlign:"center",marginBottom:"clamp(32px,5vw,56px)"}}>
-          <p style={{fontSize:"11px",textTransform:"uppercase",letterSpacing:".3em",color:"#22d3ee",fontFamily:"'Outfit',sans-serif",fontWeight:600,marginBottom:"12px"}}>My Recent Work</p>
-          <h2 style={{...GH,fontSize:"clamp(36px,6vw,64px)",lineHeight:1.1}}>Featured Projects</h2>
+        <motion.div initial={{opacity:0,y:20}} animate={vis?{opacity:1,y:0}:{}} transition={{duration:.5}}
+          style={{ marginBottom:"48px" }}>
+          <div className="sec-num">04 — Projects</div>
+          <h2 style={{ fontSize:"clamp(48px,7vw,88px)", lineHeight:.95 }}>Selected<br/>Work.</h2>
         </motion.div>
 
         {/* Filters */}

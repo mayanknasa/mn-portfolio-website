@@ -26,3 +26,224 @@ body{background:#030712;color:#f1f5f9;font-family:'Outfit',system-ui,sans-serif;
 @media(max-width:640px){
   section { padding-top: 64px !important; padding-bottom: 64px !important; }
 }
+
+#nav-links-desktop {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+#nav-hire-desktop {
+  display: flex;
+}
+#nav-burger {
+  display: flex;
+}
+
+@media(max-width: 768px) {
+  #nav-links-desktop { display: none !important; }
+  #nav-hire-desktop  { display: none !important; }
+}
+@media(min-width: 769px) {
+  #nav-burger { display: none !important; }
+}
+
+@media(max-width:900px){
+  #skills-grid { grid-template-columns: repeat(2,1fr) !important; }
+}
+@media(max-width:560px){
+  #skills-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Tighter section spacing — Apple-like rhythm */
+section {
+  padding-top: clamp(72px, 8vw, 100px) !important;
+  padding-bottom: clamp(72px, 8vw, 100px) !important;
+}
+
+/* Responsive nav links */
+@media(max-width: 768px) {
+  #nav-links-desktop { display: none !important; }
+}
+@media(min-width: 769px) {
+  #nav-burger { display: none !important; }
+}
+
+/* Skills responsive */
+@media(max-width: 900px) {
+  #skills-grid { grid-template-columns: repeat(2,1fr) !important; }
+}
+@media(max-width: 560px) {
+  #skills-grid { grid-template-columns: 1fr !important; }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Subtle entrance for every section heading */
+section h2 {
+  will-change: transform, opacity;
+}
+
+/* Apple-like smooth hover on all interactive elements */
+a, button {
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
+}
+
+/* Remove blue outline on focus for cleaner look */
+*:focus { outline: none; }
+*:focus-visible {
+  outline: 2px solid rgba(34,211,238,0.5);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Prevent layout shift on scroll */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tighten letter-spacing on all Syne headings */
+h1, h2, h3 {
+  font-family: 'Syne', sans-serif !important;
+  letter-spacing: -0.02em;
+}
+
+@media(max-width: 480px) {
+  .stat-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media(max-width: 900px) { 
+  #skills > div > div:last-child, #skills section > div > div:last-child { 
+    grid-template-columns: repeat(2,1fr) !important; 
+  } 
+}
+@media(max-width: 560px) { 
+  #skills > div > div:last-child, #skills section > div > div:last-child { 
+    grid-template-columns: 1fr !important; 
+  } 
+}
+
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.section-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #22d3ee;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* Underline reveal on section headings */
+h2 {
+  position: relative;
+  display: inline-block;
+}
+
+/* Page-level smooth transitions */
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Global resets ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ── Typography scale ── */
+h1 { font-family: 'Syne', sans-serif !important; font-weight: 800 !important; letter-spacing: -0.04em !important; }
+h2 { font-family: 'Syne', sans-serif !important; font-weight: 800 !important; letter-spacing: -0.03em !important; }
+h3 { font-family: 'Syne', sans-serif !important; font-weight: 700 !important; letter-spacing: -0.02em !important; }
+p, span, a, button, label { font-family: 'Outfit', sans-serif !important; }
+
+/* ── Link resets ── */
+a { text-decoration: none !important; }
+
+/* ── Focus styles ── */
+*:focus { outline: none; }
+*:focus-visible { outline: 2px solid rgba(34,211,238,0.5); outline-offset: 3px; border-radius: 4px; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #030712; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #22d3ee, #818cf8); border-radius: 2px; }
+
+/* ── Prevent content overflow ── */
+img { max-width: 100%; display: block; }
+.stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media(max-width: 480px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* ── Skills grid responsive ── */
+@media(max-width: 900px) { #skills .skills-inner { grid-template-columns: repeat(2,1fr) !important; } }
+@media(max-width: 560px) { #skills .skills-inner { grid-template-columns: 1fr !important; } }
+
+/* ── About bento responsive ── */
+@media(max-width: 768px) {
+  #about .bento-grid { grid-template-columns: repeat(2,1fr) !important; }
+  #about .second-row { grid-template-columns: 1fr !important; }
+  #about .header-split { grid-template-columns: 1fr !important; }
+}
+
+/* ── Marquee ── */
+@keyframes marqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* ── Section rhythm ── */
+section + section { margin-top: 0; }
+
+/* ── Mobile nav ── */
+@media(max-width: 768px) { #nav-links-desktop { display: none !important; } }
+@media(min-width: 769px) { #nav-burger { display: none !important; } }
+
+/* Section number styling */
+.sec-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(34,211,238,0.4);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.sec-num::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(34,211,238,0.12);
+  max-width: 60px;
+}
+
+/* Kill gradient on section h2 — use white instead */
+section h2 {
+  background: none !important;
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+  font-family: 'Syne', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -.03em !important;
+}
+
+/* Except hero h1 */
+#hero h1 {
+  background: none !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Left-align all section content */
+section > div {
+  text-align: left !important;
+}
+
+/* Section headers left-align */
+section .sec-header {
+  text-align: left;
+  margin-bottom: 56px;
+}
+

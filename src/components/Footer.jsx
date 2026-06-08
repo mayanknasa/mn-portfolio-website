@@ -2,7 +2,12 @@ import{FaGithub,FaLinkedin}from"react-icons/fa";
 import{HiOutlineMail}from"react-icons/hi";
 export default function Footer(){
   return(
-    <footer style={{borderTop:"1px solid rgba(34,211,238,0.09)",padding:"28px 24px"}}>
+    <footer style={{
+      borderTop: "1px solid rgba(34,211,238,0.12)",
+      padding: "28px 24px",
+      position: "relative",
+    }}>
+      <div style={{ position: "absolute", top: 0, left: "50%", transform: "translateX(-50%)", width: "200px", height: "1px", background: "linear-gradient(90deg,transparent,#22d3ee,transparent)" }} />
       <div style={{maxWidth:"1100px",margin:"0 auto",display:"flex",flexWrap:"wrap",justifyContent:"space-between",alignItems:"center",gap:"16px"}}>
         <div style={{display:"flex",alignItems:"center",gap:"10px"}}>
           <div style={{width:"30px",height:"30px",borderRadius:"99px",background:"linear-gradient(135deg,#22d3ee,#818cf8)",display:"flex",alignItems:"center",justifyContent:"center"}}>

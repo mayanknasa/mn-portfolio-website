@@ -13,7 +13,7 @@ function useIV(){
 }
 
 const GH={fontFamily:"'Syne',sans-serif",fontWeight:800,background:"linear-gradient(135deg,#22d3ee,#818cf8,#a78bfa)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"};
-const IB={width:"100%",padding:"13px 16px",borderRadius:"12px",border:"1px solid rgba(34,211,238,0.18)",background:"rgba(7,15,35,0.65)",backdropFilter:"blur(14px)",WebkitBackdropFilter:"blur(14px)",color:"#f1f5f9",fontFamily:"'Outfit',sans-serif",fontSize:"14px",outline:"none",transition:"border-color .2s,box-shadow .2s"};
+const IB={width:"100%",padding:"13px 16px",borderRadius:"12px",border:"1px solid rgba(34,211,238,0.18)",background: "rgba(15,25,50,0.8)",backdropFilter:"blur(14px)",WebkitBackdropFilter:"blur(14px)",color:"#f1f5f9",fontFamily:"'Outfit',sans-serif",fontSize:"14px",outline:"none",transition:"border-color .2s,box-shadow .2s"};
 const LK=[
   {Icon:HiOutlineMail,label:"Email",val:"mayanknasa4@gmail.com",href:"mailto:mayanknasa4@gmail.com",color:"#22d3ee"},
   {Icon:FaLinkedin,label:"LinkedIn",val:"linkedin.com/in/mayanknasa",href:"https://linkedin.com/in/mayanknasa",color:"#818cf8"},
@@ -35,12 +35,12 @@ export default function Contact(){
   };
 
   return(
-    <section id="contact" ref={ref} style={{padding:"clamp(64px,10vw,120px) 24px"}}>
+    <section id="contact" ref={ref} style={{ padding: "clamp(72px,8vw,100px) clamp(24px,6vw,80px)" }}>
       <div style={{maxWidth:"1000px",margin:"0 auto"}}>
-        <motion.div {...A(0)} style={{textAlign:"center",marginBottom:"clamp(40px,6vw,72px)"}}>
-          <p style={{fontSize:"11px",textTransform:"uppercase",letterSpacing:".3em",color:"#22d3ee",fontFamily:"'Outfit',sans-serif",fontWeight:600,marginBottom:"12px"}}>Get In Touch</p>
-          <h2 style={{...GH,fontSize:"clamp(36px,6vw,64px)",lineHeight:1.1}}>Let's Build Together</h2>
-          <p style={{fontFamily:"'Outfit',sans-serif",color:"#64748b",fontSize:"15px",marginTop:"14px",maxWidth:"420px",margin:"14px auto 0"}}>Open to freelance projects, full-time roles, and interesting collaborations.</p>
+        <motion.div initial={{opacity:0,y:20}} animate={vis?{opacity:1,y:0}:{}} transition={{duration:.5}}
+          style={{ marginBottom:"48px" }}>
+          <div className="sec-num">05 — Contact</div>
+          <h2 style={{ fontSize:"clamp(48px,7vw,88px)", lineHeight:.95 }}>Let's<br/>Talk.</h2>
         </motion.div>
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))",gap:"40px"}}>
           <motion.div {...A(.15)}>

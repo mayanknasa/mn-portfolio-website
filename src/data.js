@@ -7,7 +7,7 @@ export const STATS=[
   {value:4,suffix:"+",label:"Years Exp"},
   {value:60,suffix:"+",label:"Features"},
   {value:500,suffix:"K+",label:"Users"},
-  {value:390,suffix:"K+",label:"$ Saved"},
+  {value:390,suffix:"K+",label:"Saved ($)"},
 ];
 export const ROLES=["Software Engineer","React Native Developer","Frontend Specialist","Mobile App Developer"];
 export const SKILLS=[

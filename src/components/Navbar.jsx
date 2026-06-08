@@ -48,7 +48,7 @@ export default function Navbar(){
             </div>
             <span style={{fontFamily:"'Syne',sans-serif",fontWeight:700,fontSize:"14px",color:"#f1f5f9"}}>Mayank Nasa</span>
           </button>
-          <div id="nav-links" style={{display:"flex",gap:"4px",alignItems:"center"}}>
+          <div id="nav-links-desktop" style={{display:"flex",gap:"4px",alignItems:"center"}}>
             {NAV.map(({label,href})=>{
               const id=href.slice(1);
               const isActive=active===id;
@@ -62,12 +62,14 @@ export default function Navbar(){
             })}
           </div>
           <div style={{display:"flex",gap:"10px",alignItems:"center"}}>
-            <motion.a href="mailto:mayanknasa4@gmail.com"
-              style={{padding:"8px 20px",borderRadius:"10px",background:"linear-gradient(135deg,#22d3ee,#818cf8)",color:"#030712",fontFamily:"'Outfit',sans-serif",fontWeight:700,fontSize:"13px",textDecoration:"none"}}
-              whileHover={{scale:1.04}} whileTap={{scale:.96}}>
-              Hire Me
-            </motion.a>
-            <div id="nav-burger" style={{display:"flex",gap:"10px",alignItems:"center"}}>
+            <div id="nav-hire-desktop">
+              <motion.a href="mailto:mayanknasa4@gmail.com"
+                style={{padding:"8px 20px",borderRadius:"10px",background:"linear-gradient(135deg,#22d3ee,#818cf8)",color:"#030712",fontFamily:"'Outfit',sans-serif",fontWeight:700,fontSize:"13px",textDecoration:"none"}}
+                whileHover={{scale:1.04}} whileTap={{scale:.96}}>
+                Hire Me
+              </motion.a>
+            </div>
+            <div id="nav-burger">
               <button onClick={()=>setOpen(x=>!x)}
                 style={{width:"40px",height:"40px",borderRadius:"10px",border:"1px solid rgba(34,211,238,0.22)",background:"rgba(7,15,35,0.7)",backdropFilter:"blur(10px)",color:"#94a3b8",fontSize:"18px",display:"flex",alignItems:"center",justifyContent:"center"}}>
                 {open?"✕":"☰"}

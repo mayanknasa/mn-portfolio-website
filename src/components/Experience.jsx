@@ -15,11 +15,12 @@ const GH={fontFamily:"'Syne',sans-serif",fontWeight:800,background:"linear-gradi
 export default function Experience(){
   const[ref,vis]=useIV();
   return(
-    <section id="experience" ref={ref} style={{padding:"clamp(64px,10vw,120px) 24px"}}>
+    <section id="experience" ref={ref} style={{ padding: "clamp(72px,8vw,100px) clamp(24px,6vw,80px)" }}>
       <div style={{maxWidth:"860px",margin:"0 auto"}}>
-        <motion.div initial={{opacity:0,y:20}} animate={vis?{opacity:1,y:0}:{}} transition={{duration:.5}} style={{textAlign:"center",marginBottom:"clamp(40px,6vw,72px)"}}>
-          <p style={{fontSize:"11px",textTransform:"uppercase",letterSpacing:".3em",color:"#22d3ee",fontFamily:"'Outfit',sans-serif",fontWeight:600,marginBottom:"12px"}}>Where I've Worked</p>
-          <h2 style={{...GH,fontSize:"clamp(36px,6vw,64px)",lineHeight:1.1}}>Experience</h2>
+        <motion.div initial={{opacity:0,y:20}} animate={vis?{opacity:1,y:0}:{}} transition={{duration:.5}}
+          style={{ marginBottom:"48px" }}>
+          <div className="sec-num">03 — Experience</div>
+          <h2 style={{ fontSize:"clamp(48px,7vw,88px)", lineHeight:.95 }}>Work<br/>History.</h2>
         </motion.div>
         <div style={{position:"relative"}}>
           <div style={{position:"absolute",left:"19px",top:"24px",bottom:"24px",width:"1px",background:"linear-gradient(180deg,rgba(34,211,238,.4) 0%,rgba(129,140,248,.2) 60%,transparent 100%)"}}/>
@@ -34,9 +35,9 @@ export default function Experience(){
                   {i===2?"🎓":"💼"}
                 </motion.div>
               </div>
-              <div style={{flex:1,background:"rgba(7,15,35,0.78)",backdropFilter:"blur(20px)",WebkitBackdropFilter:"blur(20px)",border:`1px solid ${color}1e`,borderRadius:"18px",padding:"22px",transition:"border-color .25s,box-shadow .25s"}}
-                onMouseEnter={e=>{e.currentTarget.style.borderColor=color+"48";e.currentTarget.style.boxShadow=`0 10px 40px ${color}14`;}}
-                onMouseLeave={e=>{e.currentTarget.style.borderColor=color+"1e";e.currentTarget.style.boxShadow="none";}}>
+              <div style={{flex:1,background:"rgba(7,15,35,0.78)",backdropFilter:"blur(20px)",WebkitBackdropFilter:"blur(20px)",border:`1px solid ${color}1e`,borderRadius:"18px",padding:"22px",transition:"border-color .25s,box-shadow .25s",borderLeft:`3px solid ${color}40`}}
+                onMouseEnter={e=>{e.currentTarget.style.borderColor=color+"48";e.currentTarget.style.boxShadow=`0 10px 40px ${color}14`;e.currentTarget.style.borderLeftColor=color;}}
+                onMouseLeave={e=>{e.currentTarget.style.borderColor=color+"1e";e.currentTarget.style.boxShadow="none";e.currentTarget.style.borderLeftColor=color+"40";}}>
                 <div style={{display:"flex",flexWrap:"wrap",justifyContent:"space-between",gap:"10px",marginBottom:"14px"}}>
                   <div>
                     <span style={{display:"inline-block",padding:"2px 10px",borderRadius:"6px",fontSize:"11px",fontFamily:"'Outfit',sans-serif",fontWeight:600,background:color+"1a",color,border:`1px solid ${color}28`,marginBottom:"8px"}}>{badge}</span>
