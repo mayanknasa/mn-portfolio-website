@@ -1,17 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
-    <meta charset="UTF-8"/>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-    <meta name="theme-color" content="#030712"/>
-    <meta property="og:title" content="Mayank Nasa — Software Engineer"/>
-    <meta property="og:description" content="React Native & React.js Engineer. 4+ years, 500K+ users, $390K saved."/>
-    <meta property="og:type" content="website"/>
-    <title>Mayank Nasa — Software Engineer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Primary Meta Tags -->
+    <title>Mayank Nasa — Senior Product Engineer</title>
+    <meta name="title" content="Mayank Nasa — Senior Product Engineer" />
+    <meta
+      name="description"
+      content="Senior Product Engineer specializing in React Native, React, and mobile/web architecture. Built for scale at 6thStreet — 500K+ active users across 6 GCC countries, 60+ features shipped, $390K operational savings."
+    />
+    <meta name="keywords" content="Mayank Nasa, Senior Product Engineer, Software Engineer, React Native, React.js, TypeScript, Mobile Architecture, Frontend Systems, Bangalore" />
+    <meta name="author" content="Mayank Nasa" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0E0E0C" />
+
+    <!-- Theme initialization (prevents flash of unstyled theme) -->
+    <script>
+      (function() {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (stored === 'light' || (!stored && !prefersDark && stored !== 'dark')) {
+          document.documentElement.classList.remove('dark');
+          document.documentElement.classList.add('light');
+        } else {
+          document.documentElement.classList.add('dark');
+          document.documentElement.classList.remove('light');
+        }
+      })();
+    </script>
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mayank Nasa — Senior Product Engineer" />
+    <meta property="og:title" content="Mayank Nasa — Senior Product Engineer" />
+    <meta
+      property="og:description"
+      content="Senior Product Engineer specializing in React Native, React, and high-scale architecture. 500K+ users, 60+ features, $390K saved."
+    />
+    <meta property="og:image" content="/favicon.svg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mayank Nasa — Senior Product Engineer" />
+    <meta
+      name="twitter:description"
+      content="Senior Product Engineer specializing in React Native, React, and high-scale architecture. 500K+ users, 60+ features, $390K saved."
+    />
+    <meta name="twitter:image" content="/favicon.svg" />
+
+    <!-- Google Fonts: Bricolage Grotesque, Inter Tight, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700&family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700&family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;400;500;600;700&family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>

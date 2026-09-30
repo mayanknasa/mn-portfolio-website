@@ -1,0 +1,281 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,
+html.dark {
+  --bg: #0E0E0C;
+  --surface: #171714;
+  --surface-hover: #1F1F1B;
+  --border: #2A2A25;
+  --border-strong: #3F3E37;
+  --text: #F3EFE6;
+  --muted: #B3AEA2;
+  --faint: #8E8A7E;
+  --accent: #FF5B2E;
+  --accent-hover: #E0481E;
+  --accent-subtle: rgba(255, 91, 46, 0.12);
+  --focus-ring: rgba(255, 91, 46, 0.45);
+  --radius: 6px;
+}
+
+html.light {
+  --bg: #F4F1EA;
+  --surface: #FFFFFF;
+  --surface-hover: #ECE7DC;
+  --border: #DDD8CB;
+  --border-strong: #BFB8A7;
+  --text: #14140F;
+  --muted: #433F36;
+  --faint: #5C584E;
+  --accent: #D4380D;
+  --accent-hover: #BA2F0A;
+  --accent-subtle: rgba(212, 56, 13, 0.1);
+  --focus-ring: rgba(212, 56, 13, 0.4);
+  --radius: 6px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Film grain overlay — SVG noise at exactly 4% opacity */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* Typography scale and styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.font-heading {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  text-wrap: balance;
+}
+
+p, .body-text {
+  font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+.font-mono-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-feature-settings: 'zero' 1;
+}
+
+/* Hairline border utility */
+.border-hairline {
+  border: 1px solid var(--border);
+}
+
+.border-hairline-t {
+  border-top: 1px solid var(--border);
+}
+
+.border-hairline-b {
+  border-bottom: 1px solid var(--border);
+}
+
+.border-hairline-l {
+  border-left: 1px solid var(--border);
+}
+
+.border-hairline-r {
+  border-right: 1px solid var(--border);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--accent);
+  color: #FFFFFF;
+}
+
+/* Minimal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* Focus styles */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
+/* Links default transition */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Animated underline draw on links */
+.link-draw {
+  position: relative;
+  display: inline-block;
+}
+
+.link-draw::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.link-draw:hover::after,
+.link-draw:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Custom cursor support: fine pointer hides standard cursor on interactive elements */
+@media (pointer: fine) {
+  body, a, button, [role="button"], input, textarea {
+    cursor: none !important;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Shimmer animation keyframes for image placeholders */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Smooth continuous marquee animation */
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Full-width inverted section: light paper in dark mode, deep dark in light mode */
+.section-inverted {
+  --bg: #F4F1EA;
+  --surface: #FFFFFF;
+  --surface-hover: #ECE7DC;
+  --border: #DDD8CB;
+  --border-strong: #BFB8A7;
+  --text: #14140F;
+  --muted: #524E44;
+  --faint: #757063;
+  --accent: #FF5B2E;
+  --accent-hover: #E0481E;
+  --accent-subtle: rgba(255, 91, 46, 0.12);
+  --focus-ring: rgba(255, 91, 46, 0.45);
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+html.light .section-inverted {
+  --bg: #0E0E0C;
+  --surface: #171714;
+  --surface-hover: #1F1F1B;
+  --border: #2A2A25;
+  --border-strong: #3F3E37;
+  --text: #F3EFE6;
+  --muted: #B3AEA2;
+  --faint: #8E8A7E;
+  --accent: #FF5B2E;
+  --accent-hover: #E0481E;
+  --accent-subtle: rgba(255, 91, 46, 0.12);
+  --focus-ring: rgba(255, 91, 46, 0.45);
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* Large typographic outline text utility */
+.text-outline {
+  -webkit-text-stroke: 1.5px var(--border-strong);
+  color: transparent;
+  transition: all 0.25s ease;
+}
+
+.text-outline:hover {
+  -webkit-text-stroke: 1.5px var(--accent);
+  color: var(--accent);
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+
