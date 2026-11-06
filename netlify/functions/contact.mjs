@@ -1,28 +1,51 @@
-export default async (req) => {
-  if (req.method !== "POST") {
-    return new Response(JSON.stringify({ error: "Method not allowed" }), {
-      status: 405,
+export async function handler(reqOrEvent) {
+  const isFetchReq =
+    reqOrEvent &&
+    typeof reqOrEvent.text === "function" &&
+    typeof reqOrEvent.method === "string";
+
+  const createResponse = (status, payload) => {
+    if (isFetchReq) {
+      return new Response(JSON.stringify(payload), {
+        status,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+    return {
+      statusCode: status,
       headers: { "Content-Type": "application/json" },
-    });
+      body: JSON.stringify(payload),
+    };
+  };
+
+  const method = isFetchReq ? reqOrEvent.method : reqOrEvent.httpMethod;
+  if (method !== "POST") {
+    return createResponse(405, { error: "Method not allowed" });
   }
 
   try {
-    const body = await req.json();
+    let body = {};
+    if (isFetchReq) {
+      body = await reqOrEvent.json().catch(() => ({}));
+    } else if (typeof reqOrEvent.body === "string") {
+      try {
+        body = JSON.parse(reqOrEvent.body || "{}");
+      } catch {
+        body = {};
+      }
+    } else if (reqOrEvent.body) {
+      body = reqOrEvent.body;
+    }
+
     const { name, email, message, hp } = body || {};
 
     // 1. Silent rejection for honeypot bot submissions
     if (hp) {
-      return new Response(JSON.stringify({ ok: true }), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      });
+      return createResponse(200, { ok: true });
     }
 
     if (!name?.trim() || !email?.trim() || !message?.trim()) {
-      return new Response(JSON.stringify({ error: "Missing required fields" }), {
-        status: 400,
-        headers: { "Content-Type": "application/json" },
-      });
+      return createResponse(400, { error: "Missing required fields" });
     }
 
     const botToken = (
@@ -38,12 +61,9 @@ export default async (req) => {
     ).trim();
 
     if (!botToken || !chatId || botToken.includes("your_") || chatId.includes("your_")) {
-      return new Response(
-        JSON.stringify({
-          error: "Telegram bot credentials are not configured on the server environment.",
-        }),
-        { status: 503, headers: { "Content-Type": "application/json" } }
-      );
+      return createResponse(503, {
+        error: "Telegram bot credentials are not configured on the server environment.",
+      });
     }
 
     const escapeHtml = (text) =>
@@ -86,28 +106,23 @@ export default async (req) => {
 
     if (!tgRes.ok || !tgData.ok) {
       console.error("Telegram API error:", tgData);
-      return new Response(
-        JSON.stringify({
-          error: tgData.description || "Telegram API rejected message delivery.",
-        }),
-        { status: 502, headers: { "Content-Type": "application/json" } }
-      );
+      return createResponse(502, {
+        error: tgData.description || "Telegram API rejected message delivery.",
+      });
     }
 
-    return new Response(JSON.stringify({ ok: true }), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    return createResponse(200, { ok: true });
   } catch (err) {
     console.error("Contact API handler error:", err);
-    return new Response(
-      JSON.stringify({ error: "Internal server error while processing message." }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
+    return createResponse(500, {
+      error: "Internal server error while processing message.",
+      details: err?.message || String(err),
+    });
   }
-};
+}
+
+export default handler;
 
 export const config = {
   path: "/api/contact",
 };
-
