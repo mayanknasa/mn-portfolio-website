@@ -7,7 +7,7 @@ export default [
   { ignores: ["dist/**", "node_modules/**"] },
   js.configs.recommended,
   {
-    files: ["**/*.{js,jsx}"],
+    files: ["**/*.{js,jsx,mjs}"],
     languageOptions: {
       ecmaVersion: 2020,
       globals: {
@@ -32,6 +32,7 @@ export default [
         Intl: "readonly",
         fetch: "readonly",
         process: "readonly",
+        Response: "readonly",
       },
       parserOptions: {
         ecmaVersion: "latest",

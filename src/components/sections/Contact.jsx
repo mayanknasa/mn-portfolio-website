@@ -69,6 +69,54 @@ export default function Contact() {
     setTimeout(() => setCopiedEmail(false), 2500);
   };
 
+  const escapeHtml = (text) =>
+    String(text || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+
+  const sendToTelegramDirect = async (token, chat, name, email, msg) => {
+    const cleanToken = token.trim();
+    const cleanChat = chat.trim();
+
+    // 1. Send using HTML parse mode with sanitized user inputs
+    const htmlPayload = `📬 <b>New Direct Portfolio Inquiry</b>\n\n👤 <b>Name:</b> ${escapeHtml(name)}\n📧 <b>Email:</b> ${escapeHtml(email)}\n\n💬 <b>Project Scope & Details:</b>\n${escapeHtml(msg)}`;
+
+    try {
+      let tgRes = await fetch(`https://api.telegram.org/bot${cleanToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: cleanChat,
+          text: htmlPayload,
+          parse_mode: "HTML",
+        }),
+      });
+
+      if (tgRes.ok) return true;
+
+      // 2. Fallback to unformatted plain text if Telegram rejects HTML entities
+      const plainPayload = `📬 New Direct Portfolio Inquiry\n\nName: ${name}\nEmail: ${email}\n\nProject Scope & Details:\n${msg}`;
+      tgRes = await fetch(`https://api.telegram.org/bot${cleanToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: cleanChat,
+          text: plainPayload,
+        }),
+      });
+
+      if (tgRes.ok) return true;
+
+      const errData = await tgRes.json().catch(() => ({}));
+      console.warn("Direct Telegram Bot API response error:", errData);
+      return false;
+    } catch (err) {
+      console.warn("Direct Telegram network error:", err);
+      return false;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -108,49 +156,69 @@ export default function Contact() {
 
     const botToken = import.meta.env.VITE_TELEGRAM_BOT_TOKEN;
     const chatId = import.meta.env.VITE_TELEGRAM_CHAT_ID;
+    const isTelegramConfigured =
+      Boolean(botToken && chatId) &&
+      !botToken.includes("your_") &&
+      !chatId.includes("your_");
+
     let delivered = false;
 
-    // 3. Direct silent background dispatch to Telegram group via bot API
-    if (botToken && chatId) {
-      try {
-        const textPayload = `📬 *New Direct Portfolio Inquiry*\n\n👤 *Name:* ${cleanName}\n📧 *Email:* ${cleanEmail}\n\n💬 *Project Scope & Details:*\n${cleanMessage}`;
-        const tgRes = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: textPayload,
-            parse_mode: "Markdown",
-          }),
-        });
+    // 3a. First priority: Serverless endpoint (/api/contact) to keep tokens secure on production
+    try {
+      const apiRes = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: cleanName,
+          email: cleanEmail,
+          message: cleanMessage,
+        }),
+      });
 
-        if (tgRes.ok) {
-          delivered = true;
-        } else {
-          const errData = await tgRes.json();
-          console.warn("Telegram bot dispatch error:", errData);
-        }
-      } catch (err) {
-        console.warn("Telegram network dispatch error:", err);
+      if (apiRes.ok) {
+        delivered = true;
       }
+    } catch {
+      // /api/contact not reachable (e.g. static preview or local dev without backend)
     }
 
-    // 4. Background EmailJS attempt if configured in env
+    // 3b. Fallback: Direct browser Telegram dispatch if client keys are set
+    if (!delivered && isTelegramConfigured) {
+      delivered = await sendToTelegramDirect(
+        botToken,
+        chatId,
+        cleanName,
+        cleanEmail,
+        cleanMessage
+      );
+    }
+
+    // 4. Fallback: EmailJS if configured in environment
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const isEmailJsConfigured =
+      Boolean(serviceId && templateId && publicKey) &&
+      !serviceId.includes("your_") &&
+      !templateId.includes("your_") &&
+      !publicKey.includes("your_");
 
-    if (serviceId && templateId && publicKey && !serviceId.includes("your_")) {
+    if (!delivered && isEmailJsConfigured) {
       try {
         await emailjs.sendForm(serviceId, templateId, formRef.current, publicKey);
         delivered = true;
       } catch (err) {
-        console.warn("EmailJS background note:", err);
+        console.warn("EmailJS fallback note:", err);
       }
     }
 
-    // 5. In development without configured keys, simulate success
-    if (!botToken && (!serviceId || serviceId.includes("your_"))) {
+    // 5. In local dev mode only: simulate success if no delivery service has been configured yet
+    if (!delivered && import.meta.env.DEV && !isTelegramConfigured && !isEmailJsConfigured) {
+      console.info(
+        "%c[Dev Notice] Contact form submitted in dev mode.%c\nNo Telegram or EmailJS credentials detected in .env. Simulating successful transmission for UI testing.\nTo receive real messages, set VITE_TELEGRAM_BOT_TOKEN and VITE_TELEGRAM_CHAT_ID in your .env file.",
+        "color: #f59e0b; font-weight: bold;",
+        "color: inherit;"
+      );
       delivered = true;
     }
 
